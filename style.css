@@ -1,0 +1,6 @@
+.kalkulator {
+  display: flex;
+}
+button {
+  margin: 0 15px;
+}

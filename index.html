@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar React</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/jsx">
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        function Header({name}){
+            return (<h1>selamat makan datang {name ? name : 'akbar'}🚀</h1>);
+        }
+        function Button({onClick,children}){
+            return (<button onClick={onClick}>{children}</button>)
+        }
+        function HomePage(){
+            const students = ['akbar', 'nuraziza', 'icaa'];
+            const [likes, setLikes] = React.useState(0);
+
+            function handleClick(){
+                setLikes(likes + 1)
+            }
+            function kurangClick(){
+                setLikes(likes - 1)
+            }
+            function refresh(){
+                setLikes(0)
+            }
+            return (
+                <>
+                    <Header name="ica" />
+                    <ul>
+                        {
+                            students.map((student) =>(
+                                <li key={student}>{student}</li>
+                            ))
+                        }
+                    </ul>
+                    <div className="kalkulator">
+                        <Button onClick={kurangClick}> - </Button>
+                        <h1>{likes}</h1>
+                        <Button onClick={handleClick}> + </Button>
+                    </div>
+                    <Button onClick={refresh} >reset</Button>
+                </>
+            );
+        }
+
+        root.render(<HomePage />);
+
+    </script>
+</body>
+
+</html>
